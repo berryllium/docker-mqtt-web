@@ -30,8 +30,7 @@ def on_connect(mosq, obj, rc, t):
 def on_message(mosq, obj, msg):
         Message = msg.payload
         Topic = msg.topic
-        print(Message)
-        print(Topic)
+        Topic = Topic.replace('/', '__')
         cursor.execute("CREATE TABLE IF NOT EXISTS test_" + Topic + " (ID INT NOT NULL AUTO_INCREMENT, MESSAGE TEXT, DATE_INSERT TIMESTAMP DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (ID))")
         cursor.execute("INSERT INTO test_" + Topic + "  (MESSAGE) VALUES (?)", [Message])
 
