@@ -1,0 +1,3 @@
+db/mariadb
+mosquitto/data
+*.log

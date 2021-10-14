@@ -1,0 +1,68 @@
+version: "3.0"
+
+services:
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:latest
+    restart: always
+    volumes:
+    - ./mosquitto/config:/mosquitto/config
+    - ./mosquitto/data:/mosquitto/data
+    - ./mosquitto/log:/mosquitto/log
+    ports:
+    - 1883:1883
+
+  db:
+    container_name: db
+    image: mariadb
+    restart: always
+    volumes:
+    - ./db/mariadb:/var/lib/mysql
+    ports:
+    - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: qwer1234
+      MARIADB_DATABASE: test
+      MARIADB_HOST: localhost
+      MARIADB_USER: py
+      MARIADB_PASSWORD: py
+
+  py:
+    container_name: py
+    restart: always
+    build: ./py
+    working_dir: /usr/src/app
+    volumes:
+    - ./py/scripts:/usr/src/app
+    command: ["python3", "listen.py"]
+    depends_on:
+    - db
+    - mosquitto
+    env_file:
+    - ./environment/mqtt.env
+    - ./environment/db.env
+
+  web:
+    container_name: web
+    restart: always
+    image: nginx
+    ports:
+    - "80:80"
+    volumes:
+    - ./web/nginx/default/nginx.conf:/etc/nginx/conf.d/default.conf
+    - ./web/app:/usr/share/nginx/html
+
+  fpm:
+    container_name: fpm
+    restart: always
+    build: ./fpm
+    volumes:
+      - ./web/app:/usr/share/nginx/html
+    expose:
+    - 9000
+    env_file:
+    - ./environment/db.env
+    depends_on:
+    - web
+    - db
