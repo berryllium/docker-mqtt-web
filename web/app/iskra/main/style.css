@@ -53,6 +53,10 @@ h1 {
     background-color: deepskyblue;
 }
 
+.left .data .img #cur1 .scale.danger {
+    background-color: red;
+}
+
 .left .data .img #cur1 .min,
 .left .data .img #cur1 .middle,
 .left .data .img #cur1 .max{
