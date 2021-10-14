@@ -23,21 +23,22 @@ if($action == 'getData') {
     $val = $_POST['val'];
     if($code && $val) {
         $query = "CREATE TABLE IF NOT EXISTS `test_settings` (`CODE` VARCHAR(255) NOT NULL , `NAME` VARCHAR(255), `VALUE` VARCHAR(255))";
-        $res = $db->query($query);
+        $db->query($query);
         $res = $db->query("SELECT * FROM test_settings WHERE CODE = '$code'");
-        if($res) {
+        if($res && $res->fetch_assoc()) {
             $query = "UPDATE test_settings SET VALUE = '".$val."' WHERE CODE = '".$code."'";
             $res = $db->query($query);
+            if($res) die(json_encode('success update'));
         } else {
             $query = "INSERT INTO test_settings VALUES ('".$code."', NULL, '".$val."')";
             $res = $db->query($query);
+            if($res) die(json_encode('success insert'));
         }
     }
-    $status = $res ? 'success' : 'error';
-    die(json_encode($status));
+    die(json_encode('error'));
 } elseif ($action == 'getOption') {
     $code = $_POST['code'];
-    $res = $db->query("SELECT * FROM test_settings WHERE CODE = '$code'");
+    $res = $db->query("SELECT * FROM test_settings WHERE CODE = '".$code."'");
     if($res) die(json_encode($res->fetch_assoc()['VALUE']));
     else die(json_encode('error'));
 }

@@ -22,8 +22,8 @@ if($current_topic = $_GET['topic']) {
     if(!$from) $from = gmdate('Y-m-d H:i:s', time() - 600);
     $query = "SELECT ID, MESSAGE, DATE_ADD(DATE_INSERT, INTERVAL 3 HOUR) AS DATE_INSERT
     FROM $current_topic
-    WHERE DATE_INSERT >= '$from'
-    AND DATE_INSERT <= '$to'
+    WHERE DATE_INSERT >= DATE_ADD('$from', INTERVAL -3 HOUR)
+    AND DATE_INSERT <= DATE_ADD('$to', INTERVAL -3 HOUR)
     ORDER BY ID $order";
     $result = $db->query($query);
     while ($row = $result->fetch_assoc()) {

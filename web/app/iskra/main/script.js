@@ -1,4 +1,4 @@
-let ajaxPeriod = 1500
+let ajaxPeriod = 1000
 $(function (){
     let maxLevel = 900
     let dangerLevel = 600
