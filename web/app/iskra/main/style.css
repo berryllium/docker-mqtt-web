@@ -1,0 +1,146 @@
+h1 {
+    text-align: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.block header {
+    text-align: center;
+    font-size: 18px;
+}
+
+.wrap {
+    width: 1024px;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+}
+
+.left {
+    width: 410px;
+}
+
+.left .data .img {
+    text-align: center;
+    position: relative;
+}
+
+.left .data .img img {
+    width: 400px;
+}
+
+.left .data .img #cur1 {
+    position: absolute;
+    width: 50px;
+    height: 270px;
+    top: 60px;
+    left: 253px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.left .data .img #cur1 .scale{
+    width: 100%;
+    height: 10px;
+    background-color: deepskyblue;
+}
+
+.left .data .img #cur1 .min,
+.left .data .img #cur1 .middle,
+.left .data .img #cur1 .max{
+    width: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    right: -50px;
+}
+
+.left .data .img #cur1 .min:after,
+.left .data .img #cur1 .middle:after{
+    content: '';
+    width: 50px;
+    border-bottom: 2px solid black;
+    position: absolute;
+    left: -50px;
+    bottom: 50%;
+}
+
+.left .data .img #cur1 .max{
+    top: -10px
+}
+
+.left .data .img #cur1 .middle{
+    bottom: 170px
+}
+
+.left .data .img #cur1 .min{
+    bottom: 80px
+}
+
+
+.right {
+    flex: 1;
+}
+
+.right .data {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.right .block {
+    padding: 0 30px;
+}
+
+.right .data-block > img {
+    width: 200px;
+}
+
+.right .data-block {
+    position: relative;
+}
+
+.right .data-block .pomp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 100px;
+    width: 90px;
+}
+
+.right .data-block.active .pomp{
+    animation-name: rotation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.right .data-block .pomp img {
+    width: 100%;
+}
+
+.back img{
+    position: fixed;
+    top: 20px;
+    left: 50px;
+    width: 50px;
+}
+
+@keyframes rotation {
+    0% {
+        transform:rotate(360deg);
+    }
+    100% {
+        transform:rotate(0deg);
+    }
+}

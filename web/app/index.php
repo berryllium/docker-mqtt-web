@@ -29,6 +29,7 @@ require_once('model.php');
 
 <body>
 <h1>Информация из топиков</h1>
+<h2><a href="/iskra/main/index.php">КНС Искра</a></h2>
     <form>
     <div class="select">
         <p>Выберите топик из списка</p>
