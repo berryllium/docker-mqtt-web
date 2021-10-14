@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
     <title>КНС Искра</title>
@@ -25,6 +26,11 @@
                     <div class="min">0</div>
                 </div>
             </div>
+        </div>
+        <div class="input-group mt-3">
+            <span class="input-group-text" id="basic-addon1">Опасный уровень (сантиметры) :</span>
+            <input type="text" class="form-control" name="dangerLevel" aria-label="dangerLevel">
+            <button class="setOption btn btn-primary">Задать</button>
         </div>
     </div>
     <div class="right">

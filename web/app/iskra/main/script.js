@@ -1,16 +1,20 @@
+let ajaxPeriod = 1500
 $(function (){
-    let ajaxPeriod = 1500
     let maxLevel = 900
     let dangerLevel = 600
     let cur = $('#cur1 .scale')
     let pomp1 = $('#pomp1')
     let pomp2 = $('#pomp2')
     let pomp3 = $('#pomp3')
+
     $('.max').text(Math.round(maxLevel / 100) + ' м.')
     $('.middle').text(2* Math.round(maxLevel / 300) + ' м.')
     $('.min').text(Math.round(maxLevel / 300) + ' м.')
 
-    let timer = setTimeout.bind(null,function (){
+
+    let timer = setTimeout.bind(null,getData, ajaxPeriod)
+
+    function getData() {
         $.ajax({
             url: 'ajax.php',
             data: {action: 'getData'},
@@ -37,6 +41,54 @@ $(function (){
                 timer()
             }
         })
-    }, ajaxPeriod)
-    timer()
+    }
+
+
+    $('button.setOption').click(function () {
+        let el = $(this).closest('.input-group').find('input')
+        let code = el.attr('name');
+        let val = el.val();
+        if(!val) val = 0;
+        if(!code) return;
+        $.ajax({
+            url: 'ajax.php',
+            data: {
+                action: 'setOption',
+                code: code,
+                val: val,
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function (response) {
+                if(response === 'error') {
+                    alert('Ошибка!')
+                } else {
+                    dangerLevel = Number(val)
+                    alert('Значение присвоено!')
+                }
+
+            },
+            error: function () {
+                alert('Ошибка!')
+            }
+        })
+    })
+
+    $.ajax({
+        url: 'ajax.php',
+        data: {action: 'getOption',code: 'dangerLevel'},
+        method: 'post',
+        dataType: 'json',
+        success: function (response) {
+            if(response !== 'error') {
+                dangerLevel = Number(response)
+                $('[name="dangerLevel"]').val(dangerLevel)
+            }
+        },
+        error: function () {
+            alert('Ошибка!')
+        }
+    })
+
+    getData()
 })
