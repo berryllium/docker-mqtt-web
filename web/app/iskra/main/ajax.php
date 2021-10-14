@@ -22,7 +22,8 @@ if($action == 'getData') {
     $code = $_POST['code'];
     $val = $_POST['val'];
     if($code && $val) {
-        $db->query('CREATE TABLE IF NOT EXISTS test_settings (CODE VARCHAR(255) NOT NULL , NAME VARCHAR(255), VALUE VARCHAR(255))');
+        $query = "CREATE TABLE IF NOT EXISTS `test_settings` (`CODE` VARCHAR(255) NOT NULL , `NAME` VARCHAR(255), `VALUE` VARCHAR(255))";
+        $res = $db->query($query);
         $res = $db->query("SELECT * FROM test_settings WHERE CODE = '$code'");
         if($res) {
             $query = "UPDATE test_settings SET VALUE = '".$val."' WHERE CODE = '".$code."'";
