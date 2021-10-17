@@ -49,7 +49,7 @@ h1 {
 
 .left .data .img #cur1 .scale{
     width: 100%;
-    height: 10px;
+    height: 0;
     background-color: deepskyblue;
 }
 
@@ -58,35 +58,52 @@ h1 {
 }
 
 .left .data .img #cur1 .min,
-.left .data .img #cur1 .middle,
 .left .data .img #cur1 .max{
-    width: 50px;
+    width: 80px;
+    height: 30px;
     font-size: 20px;
     font-weight: bold;
     position: absolute;
-    right: -50px;
+    right: -80px;
+    transform: translate(0, 15px);
 }
 
 .left .data .img #cur1 .min:after,
-.left .data .img #cur1 .middle:after{
+.left .data .img #cur1 .max:after{
     content: '';
     width: 50px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px dashed black;
     position: absolute;
     left: -50px;
     bottom: 50%;
 }
 
 .left .data .img #cur1 .max{
-    top: -10px
-}
-
-.left .data .img #cur1 .middle{
     bottom: 170px
 }
 
 .left .data .img #cur1 .min{
     bottom: 80px
+}
+
+#cur1 .current {
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    background-color: white;
+    left: -100px;
+    font-weight: bold;
+    font-size: 19px;
+    transform: translate(0, -14px);
+}
+
+#cur1 .current:after {
+    content: '';
+    width: 70px;
+    border-bottom: 3px solid black;
+    position: absolute;
+    right: -70px;
+    bottom: 50%;
 }
 
 
@@ -138,6 +155,25 @@ h1 {
     top: 20px;
     left: 50px;
     width: 50px;
+}
+
+.sound img {
+    position: fixed;
+    right: 50px;
+    top: 10px;
+}
+
+.bg {
+    display: flex;
+    background: white;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
 }
 
 @keyframes rotation {

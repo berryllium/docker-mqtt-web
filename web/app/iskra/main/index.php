@@ -20,16 +20,21 @@
             <div class="img">
                 <img src="img/reservuar.jpg" alt="reservuar">
                 <div id="cur1">
-                    <div class="scale"></div>
-                    <div class="max">300</div>
-                    <div class="middle">150</div>
-                    <div class="min">0</div>
+                    <div class="scale"><div class="current">0.99</div></div>
+                    <div class="max" data-option="dangerLevelMax">300</div>
+                    <div class="min" data-option="dangerLevelMin">0</div>
+
                 </div>
             </div>
         </div>
         <div class="input-group mt-3">
-            <span class="input-group-text" id="basic-addon1">Опасный уровень (сантиметры) :</span>
-            <input type="text" class="form-control" name="dangerLevel" aria-label="dangerLevel">
+            <span class="input-group-text" id="basic-addon1">Уроверь max (сантиметры) :</span>
+            <input type="text" class="form-control" name="dangerLevelMax" aria-label="dangerLevelMax">
+            <button class="setOption btn btn-primary">Задать</button>
+        </div>
+        <div class="input-group mt-3">
+            <span class="input-group-text" id="basic-addon1">Уровень min (сантиметры) :</span>
+            <input type="text" class="form-control" name="dangerLevelMin" aria-label="dangerLevelMin">
             <button class="setOption btn btn-primary">Задать</button>
         </div>
     </div>
@@ -66,6 +71,9 @@
         </div>
     </div>
     <a href="/" class="back"><img src="img/back.png" alt="back"></a>
+    <a href="javascript:void(0)" class="sound"><img src="img/sound_drop.png" alt="back"></a>
 </div>
+<audio src="alarm.mp3" id="alarm" muted></audio>
+<div class="bg"><button class="setOption btn btn-primary">Войти</button></div>
 </body>
 </html>
